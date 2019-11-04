@@ -3,6 +3,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,11 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuItem?>
-<AnchorPane fx:id="pane" prefHeight="502.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.laso.mybatis_generator.controller.ConfigController">
+<AnchorPane fx:id="pane" prefHeight="502.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.laso.mybatis_generator.controller.ConfigController">
     <children>
 
         <HBox layoutX="47.0" layoutY="313.0">
@@ -23,8 +23,7 @@
                 <TextField fx:id="projectFolderField" prefHeight="27.0" prefWidth="359.0" promptText="D:\workspace\example">
 
                 </TextField>
-                <Button mnemonicParsing="false" onAction="#chooseProjectFolder" prefHeight="23.0" prefWidth="44.0"
-                        text="选择">
+                <Button mnemonicParsing="false" onAction="#chooseProjectFolder" prefHeight="23.0" prefWidth="44.0" text="选择">
                 </Button>
             </children>
         </HBox>
@@ -64,37 +63,35 @@
                 <TextField prefHeight="23.0" prefWidth="143.0" fx:id="xmlTargetProject" />
             </children>
         </HBox>
-        <Button layoutX="232.0" layoutY="348.0" mnemonicParsing="false" onAction="#generat" prefHeight="23.0"
-                prefWidth="105.0" text="开始生成！"/>
-        <FlowPane fx:id="checkTables" layoutX="58.0" layoutY="171.0" prefHeight="135.0" prefWidth="500.0"/>
-        <Text layoutX="58.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="选择要生成的表："/>
-        <CheckBox fx:id="modelCover" layoutX="313.0" layoutY="139.0" mnemonicParsing="false"
-                  text="覆盖实体类(xml和mapper默认覆盖)"/>
-        <Button layoutX="154.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkAll" prefHeight="0.0"
-                prefWidth="55.0" text="全选"/>
-        <Button layoutX="228.0" layoutY="135.0" mnemonicParsing="false" onAction="#reversalCheck" prefHeight="23.0"
-                prefWidth="55.0" text="反选"/>
-        <TextArea fx:id="consolePrint" layoutX="12.0" layoutY="379.0" prefHeight="112.0" prefWidth="573.0"/>
-        <MenuBar fx:id="meun" layoutX="1.0" layoutY="2.0" maxHeight="1.7976931348623157E308"
-                 maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="600.0"
-                 style="-fx-background-color: #D3D3D3;">
+        <Button layoutX="232.0" layoutY="348.0" mnemonicParsing="false" onAction="#generat" prefHeight="23.0" prefWidth="105.0" text="开始生成！" />
+        <Text layoutX="58.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="选择要生成的表：" />
+        <CheckBox fx:id="modelCover" layoutX="313.0" layoutY="139.0" mnemonicParsing="false" text="覆盖实体类(xml和mapper默认覆盖)" />
+        <Button layoutX="154.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkAll" prefHeight="0.0" prefWidth="55.0" text="全选" />
+        <Button layoutX="228.0" layoutY="135.0" mnemonicParsing="false" onAction="#reversalCheck" prefHeight="23.0" prefWidth="55.0" text="反选" />
+        <TextArea fx:id="consolePrint" layoutX="12.0" layoutY="379.0" prefHeight="112.0" prefWidth="573.0" />
+        <MenuBar fx:id="meun" layoutX="1.0" layoutY="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #D3D3D3;">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close"/>
+                        <MenuItem mnemonicParsing="false" text="Close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About"/>
+                        <MenuItem mnemonicParsing="false" text="About" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
+      <ScrollPane layoutX="47.0" layoutY="158.0" prefHeight="149.0" prefWidth="475.0">
+         <content>
+            <FlowPane fx:id="checkTables" prefHeight="149.0" prefWidth="459.0" />
+         </content>
+      </ScrollPane>
     </children>
 </AnchorPane>

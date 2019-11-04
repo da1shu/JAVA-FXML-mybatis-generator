@@ -68,6 +68,7 @@ public class ConfigController implements Initializable {
     @FXML
     private FlowPane checkTables;
 
+
     @FXML
     private TextField projectFolderField;
 
