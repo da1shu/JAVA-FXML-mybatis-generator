@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="315.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.laso.mybatis_generator.controller.AboutGeneboxController">
+   <children>
+      <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="114.0" layoutY="35.0">
+         <image>
+            <!--<Image url="http://static.genebox.cn/laso/file/201908/19/0dd6761cc23311e9aa5000163e108b0e.png" />-->
+            <Image url="/icon.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="39.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextFlow layoutX="8.0" layoutY="160.0" prefHeight="141.0" prefWidth="434.0" textAlignment="CENTER">
+         <children>
+            <TextArea accessibleRole="IMAGE_VIEW" editable="false" prefHeight="140.0" prefWidth="429.0" text="Genebox基因宝成立于2018年5月，成立之初即完成了行业内规模最大的&#10;天使轮融资，并于2019年9月，完成近亿元A轮融资，由大钲资本领投。&#10;公司专注于消费级基因检测产品和服务，核心团队成员均毕业于海内外一&#10;流院校。欢迎各位英才自荐，发送简历至Email：hr@lasoplanet.com &#10;&#10;相关报道：&#10;https://36kr.com/p/5245060&#10;https://mp.weixin.qq.com/s/JH3kTHY56CqRoPwdwo52-g" />
+         </children>
+      </TextFlow>
+   </children>
+</AnchorPane>
