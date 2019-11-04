@@ -10,3 +10,4 @@
 + 支持上传xml文件或手动配置数据源
 + 支持重新生成时保留自定义代码
 + jar包下载地址：https://pan.baidu.com/s/1yvj0x4oTZlXZOcYVcopNEw
++ xml模板下载地址：https://pan.baidu.com/s/1EDRCKb4X0KQQfS0PtvyuFg
