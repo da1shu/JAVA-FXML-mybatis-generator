@@ -162,8 +162,7 @@ public class FileService {
         FileReader fr = new FileReader(temFilePath);
         BufferedReader br = new BufferedReader(fr);
         // out
-        FileWriter fw = new FileWriter(path);
-        BufferedWriter bw = new BufferedWriter(fw);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path)),"utf-8"));
 
         String line;
         try {
@@ -180,7 +179,6 @@ public class FileService {
             System.err.println("read errors :" + e);
         } finally {
             bw.flush();
-            fw.close();
             bw.close();
             fr.close();
             br.close();
