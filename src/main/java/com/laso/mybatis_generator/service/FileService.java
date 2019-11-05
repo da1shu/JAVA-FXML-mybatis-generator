@@ -142,12 +142,12 @@ public class FileService {
         if (TYPE_XML.equals(type)) {
             sing = XML_SING;
             if (a) {
-                sb.append("<!-- 拓展SQL -->").append("\r\n").append(XML_BENIN).append("\r\n").append(XML_END);
+                sb.append(XML_BENIN).append("\r\n").append(XML_END);
             }
         } else if (TYPE_MAPPER.equals(type)) {
             sing = MAPPER_SING;
             if (a) {
-                sb.append("\t/* 拓展接口 */").append("\r\n").append(MAPPER_BENIN).append("\r\n").append(MAPPER_END);
+                sb.append("\r\n").append(MAPPER_BENIN).append("\r\n").append(MAPPER_END);
             }
         } else {
             System.err.println("文件格式不对");

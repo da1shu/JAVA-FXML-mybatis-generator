@@ -68,7 +68,6 @@ public class ConfigController implements Initializable {
     @FXML
     private FlowPane checkTables;
 
-
     @FXML
     private TextField projectFolderField;
 
@@ -265,7 +264,7 @@ public class ConfigController implements Initializable {
 
             // 构建生成配置类
             Configuration configuration = new Configuration();
-            org.mybatis.generator.config.Context context = new org.mybatis.generator.config.Context(ModelType.CONDITIONAL);
+            org.mybatis.generator.config.Context context = new org.mybatis.generator.config.Context(ModelType.FLAT);
             configuration.addContext(context);
 
             context.setTargetRuntime("MyBatis3");
