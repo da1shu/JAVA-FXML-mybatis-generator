@@ -14,10 +14,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="502.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.laso.mybatis_generator.controller.ConfigController">
+<?import javafx.scene.layout.VBox?>
+<AnchorPane fx:id="pane" prefHeight="603.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.laso.mybatis_generator.controller.ConfigController">
     <children>
 
-        <HBox layoutX="47.0" layoutY="313.0">
+        <HBox layoutX="113.0" layoutY="355.0">
             <children>
             <Label text="项目所在路径" />
                 <TextField fx:id="projectFolderField" prefHeight="27.0" prefWidth="359.0" promptText="D:\workspace\example">
@@ -27,49 +28,49 @@
                 </Button>
             </children>
         </HBox>
-        <HBox layoutX="71.0" layoutY="35.0" prefHeight="34.0" prefWidth="249.0" AnchorPane.leftAnchor="71.0">
+        <HBox layoutX="103.0" layoutY="52.0" prefHeight="34.0" prefWidth="249.0" AnchorPane.leftAnchor="103.0">
             <children>
                 <Label text="实体类名包名：" />
                 <TextField fx:id="modelTargetPackage" prefHeight="23.0" prefWidth="143.0" />
             </children>
         </HBox>
-        <HBox layoutX="327.0" layoutY="35.0" prefHeight="34.0" prefWidth="249.0">
+        <HBox layoutX="360.0" layoutY="52.0" prefHeight="34.0" prefWidth="249.0">
             <children>
                 <Label text="存放路径：" />
                 <TextField fx:id="modelTargetProject" prefHeight="23.0" prefWidth="143.0" />
             </children>
         </HBox>
-        <HBox layoutX="49.0" layoutY="69.0" prefHeight="34.0" prefWidth="249.0">
+        <HBox layoutX="103.0" layoutY="86.0" prefHeight="34.0" prefWidth="249.0">
             <children>
                 <Label text="mapper接口包名：" />
                 <TextField fx:id="mapperTargetPackage" prefHeight="23.0" prefWidth="143.0" />
             </children>
         </HBox>
-        <HBox layoutX="327.0" layoutY="69.0" prefHeight="34.0" prefWidth="249.0">
+        <HBox layoutX="358.0" layoutY="86.0" prefHeight="34.0" prefWidth="249.0">
             <children>
                 <Label text="存放路径：" />
                 <TextField fx:id="mapperTargetProject" prefHeight="23.0" prefWidth="143.0" />
             </children>
         </HBox>
-        <HBox layoutX="71.0" layoutY="103.0" prefHeight="34.0" prefWidth="249.0">
+        <HBox layoutX="103.0" layoutY="120.0" prefHeight="34.0" prefWidth="249.0">
             <children>
                 <Label text="xml文件包名：" />
                 <TextField prefHeight="23.0" prefWidth="146.0" fx:id="xmlTargetPackage" />
             </children>
         </HBox>
-        <HBox layoutX="327.0" layoutY="103.0" prefHeight="34.0" prefWidth="249.0">
+        <HBox layoutX="358.0" layoutY="120.0" prefHeight="34.0" prefWidth="249.0">
             <children>
                 <Label text="存放路径：" />
                 <TextField prefHeight="23.0" prefWidth="143.0" fx:id="xmlTargetProject" />
             </children>
         </HBox>
-        <Button layoutX="232.0" layoutY="348.0" mnemonicParsing="false" onAction="#generat" prefHeight="23.0" prefWidth="105.0" text="开始生成！" />
-        <Text layoutX="58.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="选择要生成的表：" />
-        <CheckBox fx:id="modelCover" layoutX="313.0" layoutY="139.0" mnemonicParsing="false" text="覆盖实体类(xml和mapper默认覆盖)" />
-        <Button layoutX="154.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkAll" prefHeight="0.0" prefWidth="55.0" text="全选" />
-        <Button layoutX="228.0" layoutY="135.0" mnemonicParsing="false" onAction="#reversalCheck" prefHeight="23.0" prefWidth="55.0" text="反选" />
-        <TextArea fx:id="consolePrint" layoutX="12.0" layoutY="379.0" prefHeight="112.0" prefWidth="573.0" />
-        <MenuBar fx:id="meun" layoutX="1.0" layoutY="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #D3D3D3;">
+        <Button layoutX="305.0" layoutY="393.0" mnemonicParsing="false" onAction="#generat" prefHeight="23.0" prefWidth="105.0" text="开始生成！" />
+        <Text layoutX="88.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="选择要生成的表：" />
+        <CheckBox fx:id="modelCover" layoutX="387.0" layoutY="165.0" mnemonicParsing="false" text="覆盖实体类(xml和mapper默认覆盖)" />
+        <Button layoutX="227.0" layoutY="161.0" mnemonicParsing="false" onAction="#checkAll" prefHeight="0.0" prefWidth="55.0" text="全选" />
+        <Button layoutX="300.0" layoutY="161.0" mnemonicParsing="false" onAction="#reversalCheck" prefHeight="23.0" prefWidth="55.0" text="反选" />
+        <TextArea fx:id="consolePrint" layoutX="12.0" layoutY="423.0" prefHeight="168.0" prefWidth="695.0" />
+        <MenuBar fx:id="meun" layoutX="1.0" layoutY="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="714.0" style="-fx-background-color: #D3D3D3;">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -88,9 +89,9 @@
                 </Menu>
             </menus>
         </MenuBar>
-      <ScrollPane layoutX="47.0" layoutY="158.0" prefHeight="149.0" prefWidth="475.0">
+      <ScrollPane layoutX="120.0" layoutY="196.0" prefHeight="149.0" prefWidth="475.0">
          <content>
-            <FlowPane fx:id="checkTables" prefHeight="149.0" prefWidth="459.0" />
+            <VBox fx:id="checkTables"  prefHeight="149.0" prefWidth="459.0" />
          </content>
       </ScrollPane>
     </children>
