@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.laso</groupId>
     <artifactId>mybatis_generator</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
     <name>mybatis_generator</name>
     <description>Demo project for Spring Boot</description>
 

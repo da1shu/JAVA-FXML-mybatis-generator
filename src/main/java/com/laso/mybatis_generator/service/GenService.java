@@ -16,9 +16,9 @@ public class GenService {
 
 
     /**
-     * 从url中匹配表名的正则
+     * 从url中匹配表名的正则(?<=\w/)[a-z_]+(?=\??)
      */
-    static Pattern pattern = Pattern.compile("(?<=\\d{4}/)[a-z_]+(?=\\??)");
+    static Pattern pattern = Pattern.compile("(?<=\\w/)[a-z_]+(?=\\??)");
 
     public List<String> getTableNames(String url, String user, String password) {
 
@@ -30,6 +30,7 @@ public class GenService {
             dbName = matcher.group(0);
             System.out.println("数据库名为:"+matcher.group(0));
         }
+        dbName = "laso_activity";
 
         //查询表名sql
         String sql = "select table_name from information_schema.tables where table_schema='"+dbName+"'";
@@ -37,6 +38,8 @@ public class GenService {
         List<String> list = JDBCUtil.jdbcGetTableList(url, user, password, sql);
 
         return list;
+
+
 
     }
 

@@ -164,12 +164,14 @@ class MybatisGeneratorApplicationTests {
 
     /**
      * 正则：          (?<=\d{4}/)[a-z_]+(?=\??)
+     * 新正则：(?<=\w/)[a-z_]+(?=\??)
+     * jdbc:mysql:\/\/(1w+).(x1w+)*(:\d+)?[a-z_]+(?=\??)
      */
     @Test
     public void zhengZeTest() {
-        String text = "jdbc:mysql://39.104.175.96:3306/ms_admin?useAffectedRows=true&characterEncoding=UTF-8&autoReconnect=true";
+        String text = "jdbc:mysql://mysql232.dev.genebox.cn/laso_activity?useAffectedRows=true&characterEncoding=UTF-8&autoReconnect=true";
         //匹配表名的正则
-        Pattern pattern = Pattern.compile("(?<=\\d{4}/)[a-z_]+(?=\\??)");
+        Pattern pattern = Pattern.compile("(?<=\\w/)[a-z_]+(?=\\??)");
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {
             System.out.println(matcher.group(0));
