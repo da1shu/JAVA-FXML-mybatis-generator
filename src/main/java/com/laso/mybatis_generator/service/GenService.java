@@ -30,7 +30,6 @@ public class GenService {
             dbName = matcher.group(0);
             System.out.println("数据库名为:"+matcher.group(0));
         }
-        dbName = "laso_activity";
 
         //查询表名sql
         String sql = "select table_name from information_schema.tables where table_schema='"+dbName+"'";
