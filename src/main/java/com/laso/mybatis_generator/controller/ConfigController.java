@@ -193,7 +193,7 @@ public class ConfigController implements Initializable {
         xmlTargetProject.setText(xmlPr);
 
         //路径初始值
-        if(!indexController.path.isEmpty()){
+        if (!indexController.path.isEmpty()) {
             projectFolderField.setText(indexController.path);
         }
 
@@ -250,10 +250,10 @@ public class ConfigController implements Initializable {
                 checkedTable.add(checkBox.getId());
             }
         }
-        if (modelPa.isEmpty() || modelPr.isEmpty() || mapperPr.isEmpty() || mapperPa.isEmpty() || xmlPa.isEmpty() || xmlPr.isEmpty()){
+        if (modelPa.isEmpty() || modelPr.isEmpty() || mapperPr.isEmpty() || mapperPa.isEmpty() || xmlPa.isEmpty() || xmlPr.isEmpty()) {
             AlertUtil.showWarnAlert("数据填完整");
             return;
-        }else if (checkedTable.isEmpty()){
+        } else if (checkedTable.isEmpty()) {
             AlertUtil.showWarnAlert("至少选一个表");
             return;
         } else if (projectFolderField.getText().isEmpty()) {
@@ -295,7 +295,6 @@ public class ConfigController implements Initializable {
                 tableConfig.setSelectByExampleStatementEnabled(false);
                 tableConfig.setUpdateByExampleStatementEnabled(false);
                 tableConfig.getProperties().setProperty("useActualColumnNames", "false");
-
                 context.addTableConfiguration(tableConfig);
 
             }
@@ -306,6 +305,7 @@ public class ConfigController implements Initializable {
             jdbcConfig.setPassword(password);
             jdbcConfig.setUserId(user);
             jdbcConfig.setDriverClass("com.mysql.jdbc.Driver");
+            jdbcConfig.getProperties().setProperty("nullCatalogMeansCurrent", "true");
 
             // java model
             JavaModelGeneratorConfiguration modelConfig = new JavaModelGeneratorConfiguration();
@@ -341,7 +341,7 @@ public class ConfigController implements Initializable {
 
             System.out.println("开始生成文件到临时文件夹...");
 
-            Thread thread = new Thread(new GenerateThread(myBatisGenerator,checkedTable,sourcePaths,targetPaths,modelCover.isSelected()));
+            Thread thread = new Thread(new GenerateThread(myBatisGenerator, checkedTable, sourcePaths, targetPaths, modelCover.isSelected()));
 
             System.out.println(JSON.toJSON(configuration));
             thread.start();
@@ -412,7 +412,6 @@ public class ConfigController implements Initializable {
         }
 
     }
-
 
 
 }
