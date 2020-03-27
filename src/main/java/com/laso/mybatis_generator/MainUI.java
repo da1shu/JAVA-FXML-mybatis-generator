@@ -1,10 +1,13 @@
 package com.laso.mybatis_generator;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.HashMap;
@@ -22,6 +25,13 @@ public class MainUI extends Application {
 
             primaryStage.setTitle("GeneboxMybatisGenerator");
             primaryStage.setScene(new Scene(root));
+            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent e) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            });
             primaryStage.show();
 
         } catch(Exception e) {

@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -100,8 +101,14 @@ public class IndexController implements Initializable {
                     e.printStackTrace();
                 }
                 configStage.setScene(new Scene(config));
+                configStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent e) {
+                        Platform.exit();
+                        System.exit(0);
+                    }
+                });
                 configStage.show();
-
             }
         });
 
