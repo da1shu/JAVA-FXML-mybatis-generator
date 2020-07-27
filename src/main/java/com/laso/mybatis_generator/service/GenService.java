@@ -18,7 +18,7 @@ public class GenService {
     /**
      * 从url中匹配表名的正则(?<=\w/)[a-z_]+(?=\??)
      */
-    static Pattern pattern = Pattern.compile("(?<=\\w/)[a-z_]+(?=\\??)");
+    static Pattern pattern = Pattern.compile("(?<=\\w/)[a-z_0-9]+(?=\\??)");
 
     public List<String> getTableNames(String url, String user, String password) {
 
