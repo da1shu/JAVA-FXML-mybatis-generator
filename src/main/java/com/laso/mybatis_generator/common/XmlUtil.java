@@ -1,16 +1,16 @@
 package com.laso.mybatis_generator.common;
 
 import com.laso.mybatis_generator.model.XmlInfo;
-import org.dom4j.*;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.springframework.util.StringUtils;
+import org.xml.sax.SAXException;
 
 import java.io.File;
-import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @创建人 daishu
@@ -24,6 +24,7 @@ public class XmlUtil {
 
         try {
             SAXReader reader = new SAXReader();
+            reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
             Document document = reader.read(file);;
 
             Element rootElement = document.getRootElement();
@@ -96,7 +97,7 @@ public class XmlUtil {
 
             }
 
-        } catch (DocumentException e) {
+        } catch (DocumentException | SAXException e) {
             System.err.println("解析文件失败！");
             e.printStackTrace();
         }

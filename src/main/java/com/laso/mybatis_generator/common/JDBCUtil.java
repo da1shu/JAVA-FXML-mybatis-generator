@@ -19,12 +19,10 @@ public class JDBCUtil {
     public static List<String> jdbcGetTableList(String url, String user, String password, String sql) {
 
         Connection connection = null;
-        String driver = "com.mysql.jdbc.Driver";
         ResultSet rs = null;
         List<String> tableList = new ArrayList<>();
         try {
             //加载驱动程序
-            Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
             if (!connection.isClosed()) {
                 System.out.println("Succeeded connecting to the Database!");
@@ -39,10 +37,6 @@ public class JDBCUtil {
 
             rs.close();
             connection.close();
-        } catch (ClassNotFoundException e) {
-            //数据库驱动类异常处理
-            e.printStackTrace();
-            return null;
         } catch (SQLException e) {
             //数据库连接失败异常处理
             System.err.println("链接数据库失败");
