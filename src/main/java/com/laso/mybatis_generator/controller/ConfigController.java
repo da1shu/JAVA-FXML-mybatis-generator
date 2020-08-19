@@ -1,15 +1,23 @@
 package com.laso.mybatis_generator.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.laso.mybatis_generator.MainUI;
 import com.laso.mybatis_generator.common.AlertUtil;
 import com.laso.mybatis_generator.common.DbRemarksCommentGenerator;
+import com.laso.mybatis_generator.common.MapperPlugin;
 import com.laso.mybatis_generator.model.FilePaths;
 import com.laso.mybatis_generator.model.XmlInfo;
 import com.laso.mybatis_generator.service.FileService;
+import com.laso.mybatis_generator.service.GenService;
 import com.laso.mybatis_generator.service.GenerateThread;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,15 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.mybatis.generator.api.MyBatisGenerator;
-
-import com.laso.mybatis_generator.MainUI;
-import com.laso.mybatis_generator.service.GenService;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.layout.FlowPane;
+import org.mybatis.generator.api.Plugin;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.internal.DefaultShellCallback;
@@ -281,7 +281,6 @@ public class ConfigController implements Initializable {
             commentConfig.addProperty("suppressDate", "true");
             commentConfig.addProperty("suppressAllComments", "true");
             context.setCommentGeneratorConfiguration(commentConfig);
-
 
             //表配置
             for (String tablename : checkedTable) {

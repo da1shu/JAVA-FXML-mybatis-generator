@@ -7,6 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.LineIterator;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -162,7 +163,7 @@ public class FileService {
         FileReader fr = new FileReader(temFilePath);
         BufferedReader br = new BufferedReader(fr);
         // out
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path)),"utf-8"));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path)), StandardCharsets.UTF_8));
 
         String line;
         try {

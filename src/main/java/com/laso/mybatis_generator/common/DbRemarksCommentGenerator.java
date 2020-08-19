@@ -19,10 +19,13 @@ package com.laso.mybatis_generator.common;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
+import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.XmlElement;
+import org.mybatis.generator.config.PropertyRegistry;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -31,16 +34,53 @@ import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 /**
  * 注释插件
  */
-public class DbRemarksCommentGenerator implements CommentGenerator {
+public class DbRemarksCommentGenerator extends PluginAdapter implements CommentGenerator {
 
 
     private Properties properties;
     private boolean columnRemarks;
     private boolean isAnnotations;
+    /** The suppress all comments. */
+    private boolean suppressAllComments;
 
     public DbRemarksCommentGenerator() {
         super();
         properties = new Properties();
+    }
+
+    @Override
+    public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                              IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
+        // 不生成getter
+        return false;
+    }
+
+    @Override
+    public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                              IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
+        // 不生成setter
+        return false;
+    }
+
+    @Override
+    public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass,
+                                   IntrospectedTable introspectedTable) {
+
+        topLevelClass.addImportedType("org.springframework.stereotype.Repository");
+        topLevelClass.addAnnotation("@Repository");
+        // Mapper文件的注释
+        interfaze.addJavaDocLine("/**");
+        interfaze.addJavaDocLine(" * " + introspectedTable.getFullyQualifiedTable().getIntrospectedTableName());
+        //   interfaze.addJavaDocLine("* @ClassName: " + interfaze.getType().getShortName());
+        //   interfaze.addJavaDocLine("* @Description: ");
+
+        //获取当前电脑的用户名
+        final String property = System.getProperty("user.name");
+
+        interfaze.addJavaDocLine("* @author: " + property);
+        interfaze.addJavaDocLine("*/");
+
+        return true;
     }
 
 
@@ -70,29 +110,80 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
         return;
     }
 
+    @Override
+    public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> set) {
 
-	@Override
+    }
+
+    @Override
+    public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+    @Override
+    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+    @Override
+    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+    @Override
+    public void addClassAnnotation(InnerClass innerClass, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+
+    @Override
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);
         columnRemarks = isTrue(properties
                 .getProperty("columnRemarks"));
         isAnnotations = isTrue(properties
                 .getProperty("annotations"));
+        suppressAllComments = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_ALL_COMMENTS));
+
     }
 
     @Override
     public void addClassComment(InnerClass innerClass,
                                 IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        innerClass.addJavaDocLine("/**"); //$NON-NLS-1$
+
+        sb.append(" * This class corresponds to the database table "); //$NON-NLS-1$
+        sb.append(introspectedTable.getFullyQualifiedTable());
+        innerClass.addJavaDocLine(sb.toString());
+
+        innerClass.addJavaDocLine(" */"); //$NON-NLS-1$
     }
 
     @Override
-    public void addModelClassComment(TopLevelClass topLevelClass,
-                                     IntrospectedTable introspectedTable) {
+    public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        topLevelClass.addImportedType("lombok.Data");
+        topLevelClass.addImportedType("lombok.NoArgsConstructor");
+        topLevelClass.addImportedType("lombok.AllArgsConstructor");
+
         topLevelClass.addJavaDocLine("/**");
         topLevelClass.addJavaDocLine(" * " + introspectedTable.getFullyQualifiedTable().getIntrospectedTableName());
-        topLevelClass.addJavaDocLine(" * @author ");
+
+        //获取当前电脑的用户名
+        final String property = System.getProperty("user.name");
+
+        topLevelClass.addJavaDocLine(" * @author " + property);
         topLevelClass.addJavaDocLine(" */");
-        if(isAnnotations) {
+        
+        topLevelClass.addAnnotation("@Data");
+        topLevelClass.addAnnotation("@NoArgsConstructor");
+        topLevelClass.addAnnotation("@AllArgsConstructor");
+        if (isAnnotations) {
             topLevelClass.addAnnotation("@Table(name=\"" + introspectedTable.getFullyQualifiedTableNameAtRuntime() + "\")");
         }
     }
@@ -125,7 +216,7 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
                     break;
                 }
             }
-            if (!introspectedColumn.isNullable() && !isId){
+            if (!introspectedColumn.isNullable() && !isId) {
                 field.addAnnotation("@NotEmpty");
             }
             if (introspectedColumn.isIdentity()) {
@@ -147,12 +238,14 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
     @Override
     public void addGeneralMethodComment(Method method,
                                         IntrospectedTable introspectedTable) {
+
     }
 
     @Override
     public void addGetterComment(Method method,
                                  IntrospectedTable introspectedTable,
                                  IntrospectedColumn introspectedColumn) {
+        
     }
 
     @Override
@@ -164,7 +257,14 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
     @Override
     public void addClassComment(InnerClass innerClass,
                                 IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
-        innerClass.addJavaDocLine("/**"); //$NON-NLS-1$
-        innerClass.addJavaDocLine(" */"); //$NON-NLS-1$
+        //$NON-NLS-1$
+        innerClass.addJavaDocLine("/**");
+        //$NON-NLS-1$
+        innerClass.addJavaDocLine(" */");
+    }
+
+    @Override
+    public boolean validate(List<String> warnings) {
+        return true;
     }
 }
