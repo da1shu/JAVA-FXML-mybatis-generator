@@ -1,6 +1,7 @@
 package com.laso.mybatis_generator.service;
 
 import com.laso.mybatis_generator.common.JDBCUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
  * @描述
  */
 
+@Slf4j
 public class GenService {
 
 
@@ -28,20 +30,20 @@ public class GenService {
         Matcher matcher = pattern.matcher(url);
         if (matcher.find()) {
             dbName = matcher.group(0);
-            System.out.println("数据库名为:"+matcher.group(0));
+            System.out.println("数据库名为:" + matcher.group(0));
         }
 
         //查询表名sql
-        String sql = "select table_name from information_schema.tables where table_schema='"+dbName+"'";
+        String sql = "select table_name from information_schema.tables where table_schema='" + dbName + "'";
 
         List<String> list = JDBCUtil.jdbcGetTableList(url, user, password, sql);
+
+        log.info("获取到的表名：{}", list);
 
         return list;
 
 
-
     }
-
 
 
     public static Pattern linePattern = Pattern.compile("_(\\w)");

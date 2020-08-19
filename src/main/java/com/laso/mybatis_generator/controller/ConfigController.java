@@ -24,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.exception.InvalidConfigurationException;
@@ -44,6 +45,7 @@ import java.util.ResourceBundle;
  * @创建时间 2019/10/26
  * @描述
  */
+@Slf4j
 public class ConfigController implements Initializable {
 
     @FXML
@@ -81,7 +83,6 @@ public class ConfigController implements Initializable {
 
     @FXML
     private TextArea consolePrint;
-
 
     String modelPa;
     String modelPr;
@@ -202,12 +203,13 @@ public class ConfigController implements Initializable {
         tableNames.forEach(name -> {
             CheckBox tableCheck = new CheckBox();
             tableCheck.setId(name);
-            tableCheck.setText(name);
+            tableCheck.setText("_" + name);
+
+            log.info("vbox 控件对象：{}", tableCheck.toString());
+
             checkTables.getChildren().add(tableCheck);
         });
-
         modelCover.setSelected(true);
-
         System.out.println("请填写路径信息和选择要生成的表");
 
     }
@@ -269,7 +271,6 @@ public class ConfigController implements Initializable {
             context.setTargetRuntime("MyBatis3");
 
 
-
             PluginConfiguration pluginConfiguration = new PluginConfiguration();
             pluginConfiguration.addProperty("type", "com.laso.mybatis_generator.common.MapperPlugin");
             pluginConfiguration.setConfigurationType("com.laso.mybatis_generator.common.MapperPlugin");
@@ -287,7 +288,6 @@ public class ConfigController implements Initializable {
             context.addProperty("beginningDelimiter", "`");
             context.addProperty("endingDelimiter", "`");
             context.addProperty("autoDelimitKeywords", "true");
-
 
 
             //表配置
@@ -411,7 +411,6 @@ public class ConfigController implements Initializable {
         System.out.println("表格反选");
 
         ObservableList<Node> children = checkTables.getChildren();
-        List<String> checkedTable = new ArrayList<>();
         CheckBox checkBox;
         for (Node box : children) {
             checkBox = (CheckBox) box;
