@@ -270,17 +270,24 @@ public class ConfigController implements Initializable {
 
             context.setTargetRuntime("MyBatis3");
 
+            CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
+            commentConfig.setConfigurationType(DbRemarksCommentGenerator.class.getName());
+            context.setCommentGeneratorConfiguration(commentConfig);
+            PluginConfiguration pluginConfiguration = new PluginConfiguration();
+            pluginConfiguration.setConfigurationType("com.laso.mybatis_generator.common.MapperPlugin");
+            context.addPluginConfiguration(pluginConfiguration);
+
             context.addProperty("javaFileEncoding", "UTF-8");
             context.addProperty("beginningDelimiter", "`");
             context.addProperty("endingDelimiter", "`");
             context.addProperty("autoDelimitKeywords", "true");
 
             // Comment 注释相关
-            CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
+            CommentGeneratorConfiguration commentConfig1 = new CommentGeneratorConfiguration();
             commentConfig.setConfigurationType(DbRemarksCommentGenerator.class.getName());
             commentConfig.addProperty("suppressDate", "true");
             commentConfig.addProperty("suppressAllComments", "true");
-            context.setCommentGeneratorConfiguration(commentConfig);
+            context.setCommentGeneratorConfiguration(commentConfig1);
 
             //表配置
             for (String tablename : checkedTable) {

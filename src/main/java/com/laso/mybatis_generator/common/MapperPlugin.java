@@ -38,8 +38,8 @@ public class MapperPlugin extends PluginAdapter {
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass,
                                    IntrospectedTable introspectedTable) {
 
-        topLevelClass.addImportedType("org.springframework.stereotype.Repository");
-        topLevelClass.addAnnotation("@Repository");
+//        topLevelClass.addImportedType("org.springframework.stereotype.Repository");
+//        topLevelClass.addAnnotation("@Repository");
         // Mapper文件的注释
         interfaze.addJavaDocLine("/**");
         interfaze.addJavaDocLine(" * " + introspectedTable.getFullyQualifiedTable().getIntrospectedTableName());
