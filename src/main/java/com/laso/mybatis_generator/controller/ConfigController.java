@@ -203,6 +203,9 @@ public class ConfigController implements Initializable {
         tableNames.forEach(name -> {
             CheckBox tableCheck = new CheckBox();
             tableCheck.setId(name);
+
+            //TODO 超级无敌大坑 tableCheck.setText("_" + name); text 为页面展示的内容 但是它这个控件默认 把第一个下划线去掉了。不明白内部做了什么。所以 手动拼接一个下划线在前面解决问题了。😭
+
             tableCheck.setText("_" + name);
 
             log.info("vbox 控件对象：{}", tableCheck.toString());
