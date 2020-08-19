@@ -3,6 +3,7 @@ package com.laso.mybatis_generator.common;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
@@ -49,9 +50,11 @@ public class MapperPlugin extends PluginAdapter {
         //获取当前电脑的用户名
         final String property = System.getProperty("user.name");
 
-        interfaze.addJavaDocLine("* @author: " + property);
+        interfaze.addJavaDocLine("* @author " + property);
         interfaze.addJavaDocLine("*/");
 
+        interfaze.addAnnotation("@Repository");
+        interfaze.addImportedType(new FullyQualifiedJavaType("org.springframework.stereotype.Repository"));
 
         return true;
     }
