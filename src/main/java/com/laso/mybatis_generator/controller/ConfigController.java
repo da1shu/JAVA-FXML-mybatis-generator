@@ -305,6 +305,9 @@ public class ConfigController implements Initializable {
                 tableConfig.setSelectByExampleStatementEnabled(false);
                 tableConfig.setUpdateByExampleStatementEnabled(false);
                 tableConfig.getProperties().setProperty("useActualColumnNames", "false");
+                GeneratedKey generatedKey = new GeneratedKey("id", "MY", true, null);//设置主键列和生成方式
+                tableConfig.setGeneratedKey(generatedKey);
+
                 context.addTableConfiguration(tableConfig);
 
             }
